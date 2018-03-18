@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Tank.h"
+#include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
@@ -37,4 +38,10 @@ private:
 	UPROPERTY(EditAnywhere)
 	float CrosshairYLocation = 0.33333f;
 
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
+
+	UPROPERTY(EditAnywhere)
+	float LineTraceRange = 1000000.f;
 };
