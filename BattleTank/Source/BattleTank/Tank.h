@@ -37,7 +37,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTurret* TurretToSet);
 
+	UFUNCTION(BlueprintCallable)
+	void Fire();
+
 private:
 	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 10000.f; // TODO: Find sensible default value
+		float LaunchSpeed = 4000.f; // TODO: Find sensible default value
 };
