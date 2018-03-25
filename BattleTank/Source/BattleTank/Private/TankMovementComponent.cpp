@@ -3,5 +3,10 @@
 #include "TankMovementComponent.h"
 
 
-
+void UTankMovementComponent::IntendMoveForward(float Throw)
+{
+	// auto Name = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("Intend Move Forward throw: %f"), Throw)
+	
+}
 
