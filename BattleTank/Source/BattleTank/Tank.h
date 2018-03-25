@@ -42,14 +42,14 @@ public:
 	void Fire();
 
 private:
-	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 4000.f; // TODO: Find sensible default value
-	UPROPERTY(EditAnywhere, Category = SetUp)
+	UPROPERTY(EditDefaultsOnly, Category = SetUp)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float LaunchSpeed = 4000.f; // TODO: Find sensible default value
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+		float ReloadTimeInSeconds = 3.f;
 
 	// Creates a local reference for spawning projectiles
 	UTankBarrel* Barrel;
-
-	float ReloadTimeInSeconds = 3.f;
 	double LastFireTime = 0;
 };
