@@ -11,9 +11,18 @@ void UTankMovementComponent::Initialise(UTankTracks* LeftTrackToSet, UTankTracks
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
 {
-	auto TankName = GetOwner()->GetName();
-	auto MoveVelocityString = MoveVelocity.ToString();
-	UE_LOG(LogTemp,Warning,TEXT("%s is moving at %s velocity"), *TankName, *MoveVelocityString)
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal(); // Getsafenormal gives us a Unit Vector
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal(); // Gets the direction tank is facing as a unit vector
+
+	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+
+	IntendMoveForward(ForwardThrow); //passes the value to another local method
+	IntendTurnRight(RightThrow); //passes the value to another local method
+
+
+
+	// UE_LOG(LogTemp,Warning,TEXT("%s is moving at %s velocity"), *TankName, *MoveVelocityString)
 }
 
 
