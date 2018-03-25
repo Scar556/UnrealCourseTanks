@@ -19,14 +19,7 @@ void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, boo
 
 	IntendMoveForward(ForwardThrow); //passes the value to another local method
 	IntendTurnRight(RightThrow); //passes the value to another local method
-
-
-
-	// UE_LOG(LogTemp,Warning,TEXT("%s is moving at %s velocity"), *TankName, *MoveVelocityString)
 }
-
-
-
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
