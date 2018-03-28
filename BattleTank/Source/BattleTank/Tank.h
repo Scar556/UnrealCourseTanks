@@ -19,9 +19,6 @@ class BATTLETANK_API ATank : public APawn
 
 protected:
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
@@ -35,26 +32,19 @@ public:
 public:
 	ATank();
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetTurretReference(UTurret* TurretToSet);
 
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category = SetUp)
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		float LaunchSpeed = 4000.f; // TODO: Find sensible default value
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		float ReloadTimeInSeconds = 3.f;
 
-	// Creates a local reference for spawning projectiles
-	UTankBarrel* Barrel;
+	UTankBarrel* Barrel = nullptr; // TODO remove
+
 	double LastFireTime = 0;
 };
