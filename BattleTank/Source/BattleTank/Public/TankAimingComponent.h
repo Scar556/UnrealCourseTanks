@@ -39,7 +39,7 @@ public:
 protected:
 	//Will be used by a child
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-		EFiringState FiringStatus = EFiringState::Aiming;
+		EFiringState FiringStatus = EFiringState::Reloading;
 
 private:
 	UTankBarrel* Barrel = nullptr;
