@@ -36,6 +36,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
+	virtual void BeginPlay() override;
+
 	void AimAt(FVector HitLocation);
 
 protected:
@@ -45,7 +47,12 @@ protected:
 
 private:
 	UTankAimingComponent();
+	
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 	void MoveBarrelTowards(FVector AimDirection);
+
+	bool IsBarrelMoving();
 
 	UTankBarrel* Barrel = nullptr;
 	UTurret* Turret = nullptr;
@@ -60,4 +67,6 @@ private:
 	float ReloadTimeInSeconds = 3.f;
 
 	double LastFireTime = 0;
+	FVector AimDirection;
+
 };
